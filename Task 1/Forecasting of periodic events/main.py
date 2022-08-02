@@ -14,6 +14,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 import numpy as np
 
+
 def XGBoost(x_train, y_train, x_test, y_test):
     DM_train = xgb.DMatrix(data=x_train, label=y_train)
     grid_param = {"learning_rate": [0.01, 0.1],
