@@ -1,0 +1,4 @@
+AWS:
+    Url: https://228873309870.signin.aws.amazon.com/console
+    Username: yiannis
+    Password: Passw0r!d!23

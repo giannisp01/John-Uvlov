@@ -57,16 +57,54 @@ def RandomForest(x_train, y_train, x_test, y_test):
     rf_matrix = metrics.confusion_matrix(rf_prediction, y_test)
     return random_forest, rf_matrix
 
+def holiday(data, holidays):
+    data_holidays = []
+
+    for i in range(len(data['Date'])):
+        day = data['Date'].dt.day[i]
+        month = data['Date'].dt.month[i]
+        holiday = False
+        for day_holidays,month_holidays in np.array(holidays):
+            if day_holidays==day and month==month_holidays:
+                data_holidays.append(True)
+                holiday = True
+        if not holiday:
+            data_holidays.append(False)
+    return pd.Series(data_holidays)
 
 
-data = pd.DataFrame({'Date': ['2021-02-23','2021-01-26','2020-12-22',
-                     '2020-11-24','2020-10-27','2020-09-29',
-                     '2020-08-25','2020-07-28','2020-06-30',
-                     '2020-05-26','2020-04-28','2020-03-31',
-                     '2020-02-25','2020-01-28','2019-12-31',
-                     '2019-11-26','2019-10-29','2019-09-24',
-                     '2019-08-27','2019-07-30','2019-06-25',
-                     '2019-05-28', '2019-04-30','2019-03-26', '2019-02-26', '2019-1-29']})
+data = pd.DataFrame({'Date': ['2020-12-22', '2020-11-24', '2020-10-27',
+                              '2020-09-29', '2020-08-25', '2020-07-28',
+                              '2020-06-30', '2020-05-26', '2020-04-28',
+                              '2020-03-31', '2020-02-25', '2020-01-28',
+                              '2019-12-31', '2019-11-26', '2019-10-29',
+                              '2019-09-24', '2019-08-27', '2019-07-30',
+                              '2019-06-25', '2019-05-28', '2019-04-30',
+                              '2019-03-26', '2019-02-26', '2019-01-29',
+                              '2018-12-27', '2018-11-27', '2018-10-30',
+                              '2018-09-25', '2018-08-28', '2018-07-31',
+                              '2018-06-26', '2018-05-29', '2018-04-24',
+                              '2018-03-27', '2018-02-27', '2018-01-30',
+                              '2017-12-27', '2017-11-28', '2017-10-31',
+                              '2017-09-26', '2017-08-29', '2017-07-25',
+                              '2017-06-27', '2017-05-30', '2017-04-25',
+                              '2017-03-28', '2017-02-28', '2017-01-31',
+                              '2016-12-27', '2016-11-29', '2016-10-25',
+                              '2016-09-27', '2016-08-30', '2016-07-26',
+                              '2016-06-28', '2016-05-31', '2016-04-26',
+                              '2016-03-29', '2016-02-23', '2016-01-26',
+                              '2015-12-29', '2015-11-24', '2015-10-27',
+                              '2015-09-29', '2015-08-25', '2015-07-28',
+                              '2015-06-30', '2015-05-26', '2015-04-28',
+                              '2015-03-31', '2015-02-24', '2015-01-27',
+                              '2014-12-30', '2014-11-25', '2014-10-28',
+                              '2014-09-30', '2014-08-26', '2014-07-29',
+                              '2014-06-24', '2014-05-27', '2014-04-29',
+                              '2014-03-25', '2014-02-25', '2014-01-28',
+                              '2013-12-31', '2013-11-26', '2013-10-29',
+                              '2013-09-24', '2013-08-27', '2013-07-30',
+                              '2013-06-25', '2013-05-28', '2013-04-30',
+                              '2013-03-26', '2013-02-26', '2013-01-29']})
 
 # Convert 'date' object to datetime type
 data['Date'] = pd.to_datetime(data['Date'])
@@ -77,23 +115,23 @@ data['Release'] = 1
 r = pd.date_range(start=data['Date'].min(), end=data['Date'].max())
 data = data.set_index('Date').reindex(r).fillna(0.0).rename_axis('Date').reset_index()
 
-
+holidays = pd.read_csv('Holidays.csv')
 # Create the following features for each date:
 #       Month           --> Month
 #       Day             --> Day (date)
 #       Workday_N       --> Number of working day of the month
 #       Week_day        --> Week day (0->Monday, 1->Tuesday,...)
-#       Week_of_month   --> Week of month
 #       Weekday_order   --> Which day of the month (e.g the 4th Tuesday of the month)
+#       Holiday         --> Whether this date is a holiday (e.g 25-December --> True)
 data['Month'] = data['Date'].dt.month
 data['Day'] = data['Date'].dt.day
 data['Workday_N'] = np.busday_count(
                     data['Date'].values.astype('datetime64[M]'),
                     data['Date'].values.astype('datetime64[D]'))
+data['Total_days'] = data['Date'].dt.daysinmonth - data['Date'].dt.day
 data['Week_day'] = data['Date'].dt.weekday
-data['Week_of_month'] = (data['Date'].dt.day
-                         - data['Date'].dt.weekday - 2) // 7 + 2
 data['Weekday_order'] = (data['Date'].dt.day + 6) // 7
+data['Holiday'] = holiday(data, holidays)
 data = data.set_index('Date')
 
 #print(data)
@@ -101,7 +139,6 @@ data = data.set_index('Date')
 #print(data.info())
 
 # Training Machine Learning Model
-
 x_train, x_test, y_train, y_test = train_test_split(data.drop(['Release'], axis=1), data['Release'],
                  test_size=0.3, random_state=1, shuffle=False)
 
@@ -148,17 +185,17 @@ print()
 ##################################################################
 
 # Create the table and fill it like training
-x_predict = pd.DataFrame(pd.date_range(date(2021,1,1), (date(2021,1,1) +
-            relativedelta(years=2)),freq='d'), columns=['Date'])
+x_predict = pd.DataFrame(pd.date_range(date(2017,1,1), (date(2017,1,1) +
+            relativedelta(years=7)),freq='d'), columns=['Date'])
 x_predict['Month'] = x_predict['Date'].dt.month
 x_predict['Day'] = x_predict['Date'].dt.day
 x_predict['Workday_N'] = np.busday_count(
                 x_predict['Date'].values.astype('datetime64[M]'),
                 x_predict['Date'].values.astype('datetime64[D]'))
+x_predict['Total_days'] = x_predict['Date'].dt.daysinmonth - x_predict['Date'].dt.day
 x_predict['Week_day'] = x_predict['Date'].dt.weekday
-x_predict['Week_of_month'] = (x_predict['Date'].dt.day -
-                              x_predict['Date'].dt.weekday - 2)//7+2
 x_predict['Weekday_order'] = (x_predict['Date'].dt.day + 6) // 7
+x_predict['Holiday'] = holiday(x_predict, holidays)
 x_predict = x_predict.set_index('Date')
 
 predictionrandom_forest = random_forest.predict(x_predict)
