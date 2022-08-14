@@ -59,7 +59,6 @@ def RandomForest(x_train, y_train, x_test, y_test):
 
 def holiday(data, holidays):
     data_holidays = []
-
     for i in range(len(data['Date'])):
         day = data['Date'].dt.day[i]
         month = data['Date'].dt.month[i]

@@ -2,3 +2,8 @@ AWS:
     Url: https://228873309870.signin.aws.amazon.com/console
     Username: yiannis
     Password: Passw0r!d!23
+
+Snowflake:
+    Url: https://VA29223.eu-central-1.snowflakecomputing.com
+    Username: sgiannis01
+    Password: Sgiannis01!

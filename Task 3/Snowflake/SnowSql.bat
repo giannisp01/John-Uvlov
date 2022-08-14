@@ -1,0 +1,1 @@
+snowsql -a va29223.eu-central-1 -u sgiannis01
