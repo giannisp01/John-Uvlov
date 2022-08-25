@@ -174,10 +174,10 @@ from darts.dataprocessing.transformers import Scaler
 
 # Define Scaler with default values (feature_range -> (0,1))
 scaler = Scaler()
-# fit_transform will transform the data of train_air dataset from to 1 and return train_air_scaled Timeseries
+# fit_transform will transform the data of train_air dataset from 0 to 1 and return train_air_scaled Timeseries
 train_air_scaled, train_milk_scaled = scaler.fit_transform([train_air, train_milk])
-# max(train_air.values()) -> train_air[-5:] , 1949-11-01,  104 passengers
-# min(train_air.values()) -> train_air[9:12] , 1957-08-01 , 467 passengers
+# min(train_air.values()) -> train_air[-5:] , 1949-11-01,  104 passengers
+# max(train_air.values()) -> train_air[9:12] , 1957-08-01 , 467 passengers
 train_air_scaled.plot(label="air_train")
 train_milk_scaled.plot(label="milk_train")
 
@@ -202,8 +202,19 @@ plt.show()
 from darts import concatenate
 from darts.utils.timeseries_generation import datetime_attribute_timeseries as dt_attr
 
+# Build some external covariates of type 2D Timeseries  containing monthly and yearly values
+# Use datetime_attribute_timeseries function to generate Timeseries objects
+# First Timeseries object is with scaled from 0 to 1 month values and DateTime Index
+# Second Timeseries object is with scaled from 0 to 1 year values and DateTime Index
+# Those timeseries are returned using dt_attr which returns Timeseries objects
+# Using concatenate we make those timeseries along a given axis which can be time/*component*/sample
 air_covs = concatenate(
     [
+        # Returns a new TimeSeries with index time_index and values are the derived information about time_index
+        # Create Features by deriving info of time_index
+        # Required fields for dt_attr
+        # time_index -> series_Air.time_index which is of type pd.DateTimeIndex of Timeseries Object
+        # attribute -> an attribute of pd.DatetimeIndex , dtype
         dt_attr(series_air.time_index, "month", dtype=np.float32) / 12,
         (dt_attr(series_air.time_index, "year", dtype=np.float32) - 1948) / 12,
     ],
