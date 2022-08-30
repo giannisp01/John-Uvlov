@@ -797,6 +797,7 @@ def get_earnings_history(ticker):
         ticker_earnings = ticker_earnings + result
         first = False
 
+
     return ticker_earnings
 
 
