@@ -793,6 +793,7 @@ def get_earnings_history(ticker):
                 print(ticker)
                 import time
                 time.sleep(180)
+                print("Trying again...")
         ticker_earnings = ticker_earnings + result
         first = False
 
