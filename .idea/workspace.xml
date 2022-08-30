@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c592511f-c292-4db8-886d-f1b7bb98e76d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yahoo Earnings/yahoo_fin_fin/yahoo_fin/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Yahoo Earnings/yahoo_fin_fin/yahoo_fin/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yahoo Earnings/yahoo_fin_fin/yahoo_fin/stock_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/Yahoo Earnings/yahoo_fin_fin/yahoo_fin/stock_info.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,14 +29,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/yiann/OneDrive/Documents/GitHub/John-Uvlov/Yahoo Earnings/yahoo_fin_fin/yahoo_fin"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yiann/OneDrive/Documents/GitHub/John-Uvlov/Yahoo Earnings/yahoo_fin_fin/yahoo_fin&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\yiann\OneDrive\Documents\GitHub\John-Uvlov\Yahoo Earnings\yahoo_fin_fin\yahoo_fin" />
@@ -158,7 +160,8 @@
       <workItem from="1659443102996" duration="50207000" />
       <workItem from="1660746218804" duration="2420000" />
       <workItem from="1661194526104" duration="217000" />
-      <workItem from="1661411639211" duration="12510000" />
+      <workItem from="1661411639211" duration="14236000" />
+      <workItem from="1661838452688" duration="5161000" />
     </task>
     <servers />
   </component>
@@ -178,12 +181,17 @@
           <line>203</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Yahoo Earnings/yahoo_fin_fin/yahoo_fin/stock_info.py</url>
+          <line>752</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/John_Uvlov$Temp.coverage" NAME="Temp Coverage Results" MODIFIED="1661602307184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Task 2" />
     <SUITE FILE_PATH="coverage/John_Uvlov$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1660498516291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Task 2/Darts" />
-    <SUITE FILE_PATH="coverage/John_Uvlov$main.coverage" NAME="main Coverage Results" MODIFIED="1661758709806" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Yahoo Earnings/yahoo_fin_fin/yahoo_fin" />
+    <SUITE FILE_PATH="coverage/John_Uvlov$main.coverage" NAME="main Coverage Results" MODIFIED="1661847516179" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Yahoo Earnings/yahoo_fin_fin/yahoo_fin" />
   </component>
 </project>
