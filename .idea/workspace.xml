@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c592511f-c292-4db8-886d-f1b7bb98e76d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Yahoo Earnings/yahoo_fin_fin/yahoo_fin/stock_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/Yahoo Earnings/yahoo_fin_fin/yahoo_fin/stock_info.py" afterDir="false" />
-    </list>
+    <list default="true" id="c592511f-c292-4db8-886d-f1b7bb98e76d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -159,7 +157,7 @@
       <workItem from="1660746218804" duration="2420000" />
       <workItem from="1661194526104" duration="217000" />
       <workItem from="1661411639211" duration="14236000" />
-      <workItem from="1661838452688" duration="7793000" />
+      <workItem from="1661838452688" duration="7892000" />
     </task>
     <servers />
   </component>
@@ -178,11 +176,6 @@
           <url>file://$PROJECT_DIR$/Task 1/Forecasting of periodic events/main.py</url>
           <line>203</line>
           <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Yahoo Earnings/yahoo_fin_fin/yahoo_fin/main.py</url>
-          <line>15</line>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
